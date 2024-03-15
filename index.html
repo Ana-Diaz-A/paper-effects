@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paper effects</title> <!--TITLE-->
+    <link rel="stylesheet" href="style.css"> <!--CSS-->
+</head>
+
+<body>
+
+<div class="fx-form">
+    <h1>Paper Effects</h1>
+    <label for="isRoughpaper">Rough</label>
+    <input checked type="checkbox" id="isRoughpaper">
+    <label for="isWorn">Worn</label>
+    <input checked type="checkbox" id="isWorn">
+    <label for="isSepia">Sepia</label>
+    <input checked type="checkbox" id="isSepia">
+    <label for="isDropShadow">Drop Shadow</label>
+    <input checked type="checkbox" id="isDropShadow">
+</div>
+
+<svg class="hidden-svg">
+    <defs>
+        <filter id="roughpaper">
+            <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1" seed="1" stitchTiles="stitch" result="turbulence"></feTurbulence>
+            <feDiffuseLighting surfaceScale="1" diffuseConstant="0.75" lighting-color="#fff" in="turbulence" result="diffuseLighting">
+                <feDistantLight azimuth="45" elevation="50"></feDistantLight>
+            </feDiffuseLighting>
+            <feComposite in="diffuseLighting" in2="SourceGraphic" operator="in" result="composite"></feComposite>
+            <feBlend mode="multiply" in="SourceGraphic" in2="composite" result="blend"></feBlend>
+        </filter>
+    </defs>
+
+    <filter id="worn">
+        <feTurbulence type="turbulence" baseFrequency="0.02 0.02" numOctaves="5" stitchTiles="stitch" result="turbulence" seed="5.465957244243718"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" xChannelSelector="R" yChannelSelector="G" result="displacementMap" scale="-73.96134825695185"></feDisplacementMap>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" xChannelSelector="G" yChannelSelector="B" result="displacementMap1" scale="73.96134825695185"></feDisplacementMap>
+        <feComposite in="displacementMap1" in2="displacementMap" operator="in" result="composite"></feComposite>
+        <feComposite in="SourceGraphic" in2="composite" operator="in" result="composite1"></feComposite>
+    </filter>
+
+    <filter id="worn-s">
+        <feTurbulence type="turbulence" baseFrequency="0.02 0.02" numOctaves="5" stitchTiles="stitch" result="turbulence" seed="5.465957244243718"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" xChannelSelector="R" yChannelSelector="G" result="displacementMap" scale="-17.85900581612804"></feDisplacementMap>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" xChannelSelector="G" yChannelSelector="B" result="displacementMap1" scale="17.85900581612804"></feDisplacementMap>
+        <feComposite in="displacementMap1" in2="displacementMap" operator="in" result="composite"></feComposite>
+        <feComposite in="SourceGraphic" in2="composite" operator="in" result="composite1"></feComposite>
+    </filter>
+</svg>
+
+</body>
+</html>
